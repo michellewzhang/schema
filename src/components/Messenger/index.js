@@ -50,11 +50,9 @@ export default class Messenger extends React.Component {
     return (
     
       <div className="messenger">
-          <div className="scrollable sidebar">
-            { /*<ConversationList />*/ 
-              <ChatDisplay />
+          { /*<div className="scrollable sidebar">
             }
-          </div>
+          </div> */ }
 
           <div className="scrollable content">
 
