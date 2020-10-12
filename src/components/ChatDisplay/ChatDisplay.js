@@ -1,13 +1,15 @@
 import * as React from 'react';
-import Splitscreen from 'react-draggable-splitscreen';
 import Messenger from '../Messenger';
+import SplitPane from 'react-split-pane';
+import './ChatDisplay.module.css';
 
 export default function ChatDisplay(props) {
-  const LeftSide = () => <div>Dialog builder will go here</div>;
-  const RightSide = () => <Messenger />;
-  const Display = () => <Splitscreen leftSide={<LeftSide />} rightSide={<RightSide />} />
+
 
   return (
-    <Display />
+    <SplitPane split="vertical" defaultSize={200} primary="second">
+      <div>Left side</div>
+      <div>Right side</div>
+    </SplitPane>
   );
 }
