@@ -44,22 +44,24 @@ export default class Messenger extends React.Component {
   }
 
   render() {
+    const schemaTitle = this.props.title;
+
     return (
       <div className="messenger">
         <div className="compose">
-              <form onSubmit={this.handleSubmit}>
-                <input
-                  type="text"
-                  className="compose-input"
-                  placeholder="Type your response..."
-                  value={this.state.value} onChange={this.handleChange} />
-              </form>
-            </div>
-
-            <div className="message-list">
-              <MessageList messageList={this.state.messages} />
-            </div>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              className="compose-input"
+              placeholder="Type your response..."
+              value={this.state.value} onChange={this.handleChange} />
+          </form>
         </div>
+
+        <div className="message-list">
+          <MessageList messageList={this.state.messages} title={schemaTitle} />
+        </div>
+      </div>
     );
   }
 }

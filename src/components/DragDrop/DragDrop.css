@@ -1,0 +1,24 @@
+.title-input {
+    flex: 1;
+    border: 2px solid black;
+    border-radius: 20px;
+    font-size: 16px;
+    height: 40px;
+    background-color: rgba(150, 150, 150, 0.0);
+    min-width: 300px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 20px;
+}
+
+.dialog-area {
+    height: 60vh;
+}
+
+.components {
+    padding: 20px;
+    height: 25vh;
+    display: flex;
+    background: white;
+    width: 100%;
+  }

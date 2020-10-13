@@ -8,6 +8,8 @@ const MY_USER_ID = 'orange';
 
 export default function MessageList(props) {
 
+  const schemaTitle = props.title;
+
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -84,7 +86,7 @@ export default function MessageList(props) {
   return (
     <div className="message-list">
       <Toolbar
-        title="Schema Title Here"
+        title={schemaTitle}
       />
 
       <div className="message-list-container">{renderMessages()}</div>
