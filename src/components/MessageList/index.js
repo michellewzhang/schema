@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Toolbar from '../Toolbar';
-import ToolbarButton from '../ToolbarButton';
 import Message from '../Message';
 import moment from 'moment';
-
 import './MessageList.css';
 
 const MY_USER_ID = 'orange';
@@ -86,16 +84,10 @@ export default function MessageList(props) {
   return (
     <div className="message-list">
       <Toolbar
-        title="Schema Title"
-        //rightItems={[
-         // <ToolbarButton key="info" icon="ion-ios-information-circle-outline" />,
-         // <ToolbarButton key="video" icon="ion-ios-videocam" />,
-         // <ToolbarButton key="phone" icon="ion-ios-call" />
-        //]}
+        title="Schema Title Here"
       />
 
       <div className="message-list-container">{renderMessages()}</div>
-
     </div>
   );
 }

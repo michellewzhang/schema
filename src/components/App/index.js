@@ -1,13 +1,10 @@
 import React from 'react';
-import Messenger from '../Messenger';
-import ChatDisplay from '../ChatDisplay/ChatDisplay';
-import SplitPane from 'react-split-pane';
+import SplitDisplay from '../SplitDisplay/SplitDisplay';
 
 export default function App() {
-    return (
-      <div className="App">
-<ChatDisplay />
-     
-      </div>
-    );
+  return (
+    <div className="App">
+      <SplitDisplay />
+    </div>
+  );
 }

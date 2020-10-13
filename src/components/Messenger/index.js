@@ -1,9 +1,6 @@
-import ConversationList from '../ConversationList';
-import Splitscreen from 'react-draggable-splitscreen';
 import MessageList from '../MessageList';
 import './Messenger.css';
 import React from 'react';
-import ChatDisplay from '../ChatDisplay/ChatDisplay';
 
 export default class Messenger extends React.Component {
   constructor(props) {
@@ -48,15 +45,8 @@ export default class Messenger extends React.Component {
 
   render() {
     return (
-    
       <div className="messenger">
-          { /*<div className="scrollable sidebar">
-            }
-          </div> */ }
-
-          <div className="scrollable content">
-
-            <div className="compose">
+        <div className="compose">
               <form onSubmit={this.handleSubmit}>
                 <input
                   type="text"
@@ -69,8 +59,6 @@ export default class Messenger extends React.Component {
             <div className="message-list">
               <MessageList messageList={this.state.messages} />
             </div>
-
-          </div>
         </div>
     );
   }

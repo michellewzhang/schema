@@ -4,8 +4,8 @@
   height: 100vh;
   background: #eeeef1;
 
-  grid-template-columns: 350px auto;
-  grid-template-rows: 60px auto 60px;
+  /*grid-template-columns: 500px auto;*/
+  grid-template-rows: 6px auto 60px;
   grid-column-gap: 1px;
   grid-row-gap: 1px;
 }
