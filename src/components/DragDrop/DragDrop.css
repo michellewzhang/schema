@@ -12,23 +12,12 @@
     margin-left: 0;
 }
 
-.dialog-area {
-    height: 60vh;
-}
-
 h1 {
     font-weight: bold;
 }
-
-.components {
-    padding: 20px;
-    height: 25vh;
-    background: transparent;
-    width: 100vw;
-}
-
 .container {
     width: 100vw;
+    background: transparent;
 }
 
 .large-paper {
@@ -37,4 +26,10 @@ h1 {
     padding: 20px;
     padding-top: 35px;
     text-align: center;
+}
+
+.component-container {
+    background: transparent;
+    padding: 10px;
+    height: 25vh;
 }
