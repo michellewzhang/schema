@@ -11,7 +11,7 @@ export default class DragDrop extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       count: 4,
-      elementList: [
+      elementsList: [
         {
           id: '1',
           type: 'input',
@@ -72,7 +72,7 @@ export default class DragDrop extends React.Component {
 
         <div className="component-container">
           <div style={{ height: 450, width: 600 }}>
-            <Flow el={this.state.elementList} />
+            <Flow el={this.state.elementsList} />
           </div>
         </div>
 
@@ -92,10 +92,10 @@ export default class DragDrop extends React.Component {
                 };
 
                 this.setState(prevState => ({
-                  elementList: [...prevState.elementList, newEl],
+                  elementsList: [...prevState.elementsList, newEl],
                   count: prevState.count + 1
                 }));
-                console.log(this.state.elementList);
+                console.log(this.state.elementsList);
                 console.log(this.state.count);
               }}>
               State
@@ -116,10 +116,10 @@ export default class DragDrop extends React.Component {
                 };
 
                 this.setState(prevState => ({
-                  elementList: [...prevState.elementList, newEl],
+                  elementsList: [...prevState.elementsList, newEl],
                   count: prevState.count + 1
                 }));
-                console.log(this.state.elementList);
+                console.log(this.state.elementsList);
                 console.log(this.state.count);
               }}>
               Action
@@ -140,10 +140,10 @@ export default class DragDrop extends React.Component {
                 };
 
                 this.setState(prevState => ({
-                  elementList: [...prevState.elementList, newEl],
+                  elementsList: [...prevState.elementsList, newEl],
                   count: prevState.count + 1
                 }));
-                console.log(this.state.elementList);
+                console.log(this.state.elementsList);
                 console.log(this.state.count);
               }}>
               Query
