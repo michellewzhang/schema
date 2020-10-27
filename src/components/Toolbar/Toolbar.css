@@ -1,11 +1,9 @@
 .toolbar {
   display: flex;
   align-items: center;
-
   background-color: white;
   font-weight: 500;
   border-bottom: 1px solid #eeeef1;
-
   position: sticky;
   top: 0px;
 }

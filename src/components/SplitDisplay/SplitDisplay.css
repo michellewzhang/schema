@@ -1,5 +1,6 @@
   .split {
     cursor: default;
+    height:100vh;
   }
 
   .dnd {
