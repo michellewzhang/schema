@@ -1,13 +1,15 @@
 .messenger {
   display: grid;
-  width: 100%;
   height: 100vh;
   background: #e4f0fa;
-
   /*grid-template-columns: 500px auto;*/
   grid-template-rows: 6px auto 60px;
   grid-column-gap: 1px;
   grid-row-gap: 1px;
+}
+
+.message-list {
+  overflow:wrap;
 }
 
 .container {
@@ -43,7 +45,7 @@
   align-items: center;
   background: white;
   position: fixed;
-  width: calc(100% - 20px);
+  width: 100%;
   bottom: 0px;
 }
 
@@ -59,9 +61,9 @@
   flex: 1;
   border: none;
   font-size: 14px;
-  height: 40px;
   background-color: rgba(150, 150, 150, 0.0);
-  width: 73vw;
+  height: 30px;
+  width: 90vw;
 }
 
 .compose-input::placeholder {

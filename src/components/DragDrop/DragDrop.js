@@ -36,7 +36,6 @@ export default class DragDrop extends React.Component {
         </div>
 
         <div className="component-container">
-
           <div style={{ height: 600, width: 600 }}>
             <Flow />
           </div>

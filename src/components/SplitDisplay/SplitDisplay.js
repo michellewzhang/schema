@@ -19,9 +19,9 @@ export default class SplitDisplay extends React.Component {
 
   render() {
     return (
-      <div>
-      <SplitPane split="vertical" minSize={500}>
-        <div><DragDrop onChange={this.onChange} title={this.state.title} /></div>
+      <div className="split">
+      <SplitPane allowResize={true} split="vertical">
+        <div className="dnd"><DragDrop onChange={this.onChange} title={this.state.title} /></div>
         <div><Messenger title={this.state.title} /></div>
       </SplitPane>
       </div>

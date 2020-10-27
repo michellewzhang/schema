@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import ReactFlow, {
   removeElements,
   addEdge,
-  MiniMap,
   Controls,
-  Background,
 } from 'react-flow-renderer';
 
 const onLoad = (reactFlowInstance) => {
@@ -82,9 +80,9 @@ const Flow = () => {
     setElements((els) => removeElements(elementsToRemove, els));
 
   const onNodeDragStart = (e, node) => {
-    if (node.position.x == 15 && node.position.y == 400) {
+    if (node.position.x === 15 && node.position.y === 400) {
       var newElements = elements.slice();
-      
+
       newElements.push({
         id: node.id.concat('copy'),
         type: 'default',
@@ -97,9 +95,9 @@ const Flow = () => {
       setElements(newElements);
     }
 
-    if (node.position.x == 215 && node.position.y == 400) {
-      var newElements = elements.slice();
-      
+    if (node.position.x === 215 && node.position.y === 400) {
+      newElements = elements.slice();
+
       newElements.push({
         id: node.id.concat('copy'),
         type: 'default',
@@ -112,9 +110,9 @@ const Flow = () => {
       setElements(newElements);
     }
 
-    if (node.position.x == 415 && node.position.y == 400) {
-      var newElements = elements.slice();
-      
+    if (node.position.x === 415 && node.position.y === 400) {
+      newElements = elements.slice();
+
       newElements.push({
         id: node.id.concat('copy'),
         type: 'default',
@@ -134,11 +132,10 @@ const Flow = () => {
       onNodeDragStart={onNodeDragStart}
       onConnect={onConnect}
       onLoad={onLoad}
-      snapToGrid={true}
+      snapToGrid={false}
       snapGrid={[15, 15]}
     >
-      <Controls />
-      <Background color="#aaa" gap={16} />
+      
     </ReactFlow>
   );
 };
