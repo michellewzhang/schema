@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactFlow, {
   removeElements,
   addEdge,
@@ -13,11 +13,20 @@ const onLoad = (reactFlowInstance) => {
 const Flow = (props) => {
   const elementsList = props.el;
   const [elements, setElements] = useState(elementsList);
-  console.log(elementsList);
 
-  const onElementsRemove = (elementsToRemove) =>
-    setElements((els) => removeElements(elementsToRemove, els));
+  useEffect(() => {
+    setElements(props.el);
+  }, [props.el]);
 
+  const onElementsRemove = (elementsToRemove) => 
+  {
+    setElements((els) =>
+      removeElements(elementsToRemove, els));
+
+    console.log(elementsToRemove);
+    props.onChange(elementsToRemove);
+  }
+      
   const onConnect = (params) => setElements((els) => addEdge(params, els));
 
   return (

@@ -10,46 +10,22 @@ export default class DragDrop extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
-      count: 4,
-      elementsList: [
-        {
-          id: '1',
-          type: 'input',
-          data: {
-            label: (
-              <>
-                Welcome to the <strong>Dialog Builder</strong>
-              </>
-            ),
-          },
-          position: { x: 250, y: 0 },
-        },
-        {
-          id: '2',
-          data: {
-            label: 'drag me',
-          },
-          position: { x: 400, y: 350 },
-        },
-        {
-          id: '3',
-          type: 'output',
-          data: { label: 'try drawing a connection here' },
-          position: { x: 120, y: 350 },
-        },
-        {
-          id: 'e1-2',
-          source: '1',
-          target: '2',
-          label: 'to delete a node / edge: click and press delete key',
-          type: 'smoothstep',
-        }]
+      count: 1,
+      elementsList: []
     };
   }
 
   handleChange(e) {
     this.props.onChange(e.target.value);
     console.log(e.target.value);
+  }
+
+  onListChange = (arr) => {
+    var targetId = arr[0].id;
+    var newArr = this.state.elementsList.filter(function(obj) {
+      return obj.id !== targetId;
+    });
+    this.setState({elementsList: newArr })
   }
 
   render() {
@@ -72,7 +48,7 @@ export default class DragDrop extends React.Component {
 
         <div className="component-container">
           <div style={{ height: 450, width: 600 }}>
-            <Flow el={this.state.elementsList} />
+            <Flow el={this.state.elementsList} onChange={this.onListChange} />
           </div>
         </div>
 
@@ -95,8 +71,6 @@ export default class DragDrop extends React.Component {
                   elementsList: [...prevState.elementsList, newEl],
                   count: prevState.count + 1
                 }));
-                console.log(this.state.elementsList);
-                console.log(this.state.count);
               }}>
               State
           </Button>
@@ -109,7 +83,7 @@ export default class DragDrop extends React.Component {
                   id: this.state.count.toString(),
                   type: 'default',
                   data: { label: 'New Action' },
-                  position: { x: 60, y: 50 },
+                  position: { x: 160, y: 50 },
                   style: {
                     border: '1px solid #ff0a80',
                   }
@@ -119,8 +93,6 @@ export default class DragDrop extends React.Component {
                   elementsList: [...prevState.elementsList, newEl],
                   count: prevState.count + 1
                 }));
-                console.log(this.state.elementsList);
-                console.log(this.state.count);
               }}>
               Action
           </Button>
@@ -133,7 +105,7 @@ export default class DragDrop extends React.Component {
                   id: this.state.count.toString(),
                   type: 'default',
                   data: { label: 'New Query' },
-                  position: { x: 60, y: 70 },
+                  position: { x: 260, y: 50 },
                   style: {
                     border: '1px solid #222222',
                   }
@@ -143,8 +115,6 @@ export default class DragDrop extends React.Component {
                   elementsList: [...prevState.elementsList, newEl],
                   count: prevState.count + 1
                 }));
-                console.log(this.state.elementsList);
-                console.log(this.state.count);
               }}>
               Query
           </Button>
