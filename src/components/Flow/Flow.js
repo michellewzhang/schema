@@ -5,6 +5,7 @@ import ReactFlow, {
   Controls,
   Background,
 } from 'react-flow-renderer';
+import Modal from '../Modal/Modal';
 
 const onLoad = (reactFlowInstance) => {
   console.log('flow loaded:', reactFlowInstance);
@@ -19,29 +20,40 @@ const Flow = (props) => {
     setElements(props.el);
   }, [props.el]);
 
-  const onElementsRemove = (elementsToRemove) => 
-  {
+  const onElementsRemove = (elementsToRemove) => {
     setElements((els) =>
       removeElements(elementsToRemove, els));
 
-    console.log(elementsToRemove);
-    props.onChange(elementsToRemove);
+    props.onRemove(elementsToRemove);
   }
-      
-  const onConnect = (params) => setElements((els) => addEdge(params, els));
 
-  return (
+  const onConnect = (params) => {
+    setElements((els) =>
+      addEdge(params, els));
+
+    props.onEdge(params);
+  }
+
+  /*** needs fix ***/
+  const onNodeContextMenu = (e,n) => {
+    props.onSelect(n);
+  }
+
+  return ( 
     <ReactFlow
       elements={elements}
       onElementsRemove={onElementsRemove}
       onConnect={onConnect}
       onLoad={onLoad}
       variant="dots"
+      /*** needs fix ***/
+      onNodeContextMenu={onNodeContextMenu}
     >
-    <Background
-      variant="dots"
-      gap={16}
-    />
+      <Background
+        variant="dots"
+        gap={16}
+      />
+      <Controls />
     </ReactFlow>
   );
 }

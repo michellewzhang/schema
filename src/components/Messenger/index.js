@@ -10,7 +10,7 @@ export default class Messenger extends React.Component {
         {
           id: 0,
           author: 'apple',
-          message: 'Hello! How are you today?',
+          message: 'Hello! Welcome to dialog builder.',
           timestamp: new Date().getTime(),
         }
       ],

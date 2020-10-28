@@ -14,16 +14,15 @@ export default class SplitDisplay extends React.Component {
 
   onChange(t) {
     this.setState({ title: t });
-    console.log(t);
   }
 
   render() {
     return (
       <div className="split">
-      <SplitPane allowResize={true} split="vertical">
-        <div className="dnd"><DragDrop onChange={this.onChange} title={this.state.title} /></div>
-        <div><Messenger title={this.state.title} /></div>
-      </SplitPane>
+        <SplitPane allowResize={true} split="vertical">
+          <div className="dnd"><DragDrop onChange={this.onChange} title={this.state.title} /></div>
+          <div><Messenger title={this.state.title} /></div>
+        </SplitPane>
       </div>
     );
   }
