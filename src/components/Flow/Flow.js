@@ -3,6 +3,7 @@ import ReactFlow, {
   removeElements,
   addEdge,
   Controls,
+  Background,
 } from 'react-flow-renderer';
 
 const onLoad = (reactFlowInstance) => {
@@ -35,8 +36,12 @@ const Flow = (props) => {
       onElementsRemove={onElementsRemove}
       onConnect={onConnect}
       onLoad={onLoad}
+      variant="dots"
     >
-      <Controls />
+    <Background
+      variant="dots"
+      gap={16}
+    />
     </ReactFlow>
   );
 }
