@@ -4,8 +4,9 @@ import ReactFlow, {
   addEdge,
   Controls,
   Background,
+  isNode
 } from 'react-flow-renderer';
-import Modal from '../Modal/Modal';
+import Tooltip from '@material-ui/core/Tooltip'; 
 
 const onLoad = (reactFlowInstance) => {
   console.log('flow loaded:', reactFlowInstance);
@@ -34,8 +35,10 @@ const Flow = (props) => {
     props.onEdge(params);
   }
 
-  /*** needs fix ***/
   const onNodeContextMenu = (e,n) => {
+    window.addEventListener('contextmenu', function (e) { 
+      e.preventDefault(); 
+    },false);  
     props.onSelect(n);
   }
 
@@ -46,7 +49,6 @@ const Flow = (props) => {
       onConnect={onConnect}
       onLoad={onLoad}
       variant="dots"
-      /*** needs fix ***/
       onNodeContextMenu={onNodeContextMenu}
     >
       <Background

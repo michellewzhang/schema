@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import Flow from '../Flow/Flow';
 import Modal from '../Modal/Modal';
+import Tooltip from '@material-ui/core/Tooltip';
 
 export default class DragDrop extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class DragDrop extends React.Component {
       open: false,
       selected: {
         id: 'None',
-        position: {x: 0, y: 0},
+        position: { x: 0, y: 0 },
         data: {
           label: 'None',
           text: 'None'
@@ -56,9 +57,12 @@ export default class DragDrop extends React.Component {
     }));
   }
 
-  /*** needs fix ***/
   onNodeSelected = (node) => {
-    this.setState({selected: node, open: true})
+    this.setState({ selected: node, open: true });
+  }
+
+  closeModal = () => {
+    this.setState({ open: false });
   }
 
   render() {
@@ -77,16 +81,20 @@ export default class DragDrop extends React.Component {
             <IconButton aria-label="save">
               <SaveAltIcon />
             </IconButton>
+            <span className="howto">
+            <Tooltip title="DELETE: select + backspace; EDIT: right click"
+            leaveDelay={400} arrow>
+              <Button variant="contained" color="secondary" disableElevation>How to</Button>
+            </Tooltip>
+            </span>
           </form>
         </div>
-
         <div className="component-container">
           <div style={{ height: 450, width: 1200 }}>
-            <Flow el={this.state.elementsList} 
-                  onRemove={this.onListRemove} 
-                  onEdge={this.onEdgeAdded}
-                  /*** needs fix ***/
-                  onSelect={this.onNodeSelected}/>
+            <Flow el={this.state.elementsList}
+              onRemove={this.onListRemove}
+              onEdge={this.onEdgeAdded}
+              onSelect={this.onNodeSelected} />
           </div>
         </div>
 
@@ -158,7 +166,7 @@ export default class DragDrop extends React.Component {
           </Button>
           </span>
 
-          <Modal open={this.state.open} node={this.state.selected}/>
+          <Modal closeModal={this.closeModal} open={this.state.open} node={this.state.selected} />
         </div>
       </div>
     )
