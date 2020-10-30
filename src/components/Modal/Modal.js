@@ -18,8 +18,6 @@ export default function Modal(props) {
   const handleSubmit = () => {
     props.onDataChange(title, text, props.node)
     props.closeModal();
-    //setTitle(' ');
-    //setText(' ');
   }
 
   return (

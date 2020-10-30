@@ -6,7 +6,7 @@ import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import Flow from '../Flow/Flow';
 import Modal from '../Modal/Modal';
 import Tooltip from '@material-ui/core/Tooltip';
-
+import ReactFlow, { isNode, getOutgoers } from 'react-flow-renderer';
 
 export default class DragDrop extends React.Component {
   constructor(props) {
@@ -81,7 +81,33 @@ export default class DragDrop extends React.Component {
 
   render() {
     const schemaTitle = this.props.title;
-    console.log(this.state.elementsList);
+
+    //data representatioon
+    const elements = [...this.state.elementsList];
+    const states = {};
+    elements.forEach(obj => {
+      if (isNode(obj)) {
+      states[obj.data.label] = obj.data.text
+    }});
+
+    const outgoers = {};
+    elements.forEach(obj => {
+      if (isNode(obj)) {
+        var allOutgoers = getOutgoers(obj, elements);
+        if (allOutgoers.length > 0) {
+          var child = allOutgoers[0].data.label;
+          outgoers[obj.data.label] = child;
+        }
+    }});
+
+    const data = {
+      task: schemaTitle, 
+      replies: states,
+      graph: outgoers
+    }
+
+    console.log(data);
+    //end data representation
 
     return (
       <div className="container">
@@ -182,6 +208,7 @@ export default class DragDrop extends React.Component {
 
           <Modal closeModal={this.closeModal} open={this.state.open} node={this.state.selected} 
           onDataChange={this.onDataChange} />
+
         </div>
       </div>
     )
