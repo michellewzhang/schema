@@ -7,10 +7,12 @@ import Flow from '../Flow/Flow';
 import Modal from '../Modal/Modal';
 import Tooltip from '@material-ui/core/Tooltip';
 
+
 export default class DragDrop extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+
     this.state = {
       count: 1,
       elementsList: [],
@@ -19,8 +21,8 @@ export default class DragDrop extends React.Component {
         id: 'None',
         position: { x: 0, y: 0 },
         data: {
-          label: 'None',
-          text: 'None'
+          label: '',
+          text: ''
         }
       }
     };
@@ -30,8 +32,20 @@ export default class DragDrop extends React.Component {
     this.props.onChange(e.target.value);
   }
 
+  onDataChange = (valTitle, valText, node) => {
+    var newNode = JSON.parse(JSON.stringify(node));
+    var nodeId = node.id
+    newNode.data.label = valTitle;
+    newNode.data.text = valText;
+
+    this.setState({ elementsList: this.state.elementsList.filter(function(obj) { 
+        return obj.id !== nodeId 
+    }).concat(newNode)});
+    
+  }
+
   onListRemove = (arr) => {
-    var newArr = this.state.elementsList;
+    var newArr = [...this.state.elementsList];
     arr.forEach(item => {
       var targetId = item.id;
       newArr = newArr.filter(function (obj) {
@@ -82,10 +96,10 @@ export default class DragDrop extends React.Component {
               <SaveAltIcon />
             </IconButton>
             <span className="howto">
-            <Tooltip title="DELETE: select + backspace; EDIT: right click"
-            leaveDelay={400} arrow>
-              <Button variant="contained" color="secondary" disableElevation>How to</Button>
-            </Tooltip>
+              <Tooltip title="DELETE: select + backspace; EDIT: right click"
+                leaveDelay={400} arrow>
+                <Button variant="contained" color="secondary" disableElevation>How to</Button>
+              </Tooltip>
             </span>
           </form>
         </div>
@@ -166,7 +180,8 @@ export default class DragDrop extends React.Component {
           </Button>
           </span>
 
-          <Modal closeModal={this.closeModal} open={this.state.open} node={this.state.selected} />
+          <Modal closeModal={this.closeModal} open={this.state.open} node={this.state.selected} 
+          onDataChange={this.onDataChange} />
         </div>
       </div>
     )

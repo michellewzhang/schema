@@ -4,9 +4,7 @@ import ReactFlow, {
   addEdge,
   Controls,
   Background,
-  isNode
 } from 'react-flow-renderer';
-import Tooltip from '@material-ui/core/Tooltip'; 
 
 const onLoad = (reactFlowInstance) => {
   console.log('flow loaded:', reactFlowInstance);
@@ -35,14 +33,14 @@ const Flow = (props) => {
     props.onEdge(params);
   }
 
-  const onNodeContextMenu = (e,n) => {
-    window.addEventListener('contextmenu', function (e) { 
-      e.preventDefault(); 
-    },false);  
+  const onNodeContextMenu = (e, n) => {
+    window.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    }, false);
     props.onSelect(n);
   }
 
-  return ( 
+  return (
     <ReactFlow
       elements={elements}
       onElementsRemove={onElementsRemove}
