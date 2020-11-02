@@ -6,7 +6,7 @@ import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import Flow from '../Flow/Flow';
 import Modal from '../Modal/Modal';
 import Tooltip from '@material-ui/core/Tooltip';
-import ReactFlow, { isNode, getOutgoers } from 'react-flow-renderer';
+import ReactFlow, { isNode, getOutgoers, getIncomers } from 'react-flow-renderer';
 
 export default class DragDrop extends React.Component {
   constructor(props) {
@@ -22,7 +22,8 @@ export default class DragDrop extends React.Component {
         position: { x: 0, y: 0 },
         data: {
           label: '',
-          text: ''
+          text: '',
+          type: 'State'
         }
       }
     };
@@ -90,20 +91,17 @@ export default class DragDrop extends React.Component {
       states[obj.data.label] = obj.data.text
     }});
 
-    const outgoers = {};
+    const connections = {};
     elements.forEach(obj => {
-      if (isNode(obj)) {
-        var allOutgoers = getOutgoers(obj, elements);
-        if (allOutgoers.length > 0) {
-          var child = allOutgoers[0].data.label;
-          outgoers[obj.data.label] = child;
-        }
+      if (isNode(obj) && obj.data.type != "State") {
+        var incoming = getIncomers(obj, elements);
+        incoming.forEach(node => connections[node.data.label] = obj.data.label);
     }});
 
     const data = {
       task: schemaTitle, 
       replies: states,
-      graph: outgoers
+      graph: connections
     }
 
     console.log(data);
@@ -146,7 +144,7 @@ export default class DragDrop extends React.Component {
                 const newEl = {
                   id: this.state.count.toString(),
                   type: 'default',
-                  data: { label: 'New State', text: 'Default Text' },
+                  data: { label: 'New State', text: 'Default Text', type: 'State' },
                   position: { x: 60, y: 50 },
                   style: {
                     border: '1px solid #454bff',
@@ -168,7 +166,7 @@ export default class DragDrop extends React.Component {
                 const newEl = {
                   id: this.state.count.toString(),
                   type: 'default',
-                  data: { label: 'New Action', text: 'Default Text' },
+                  data: { label: 'New Action', text: 'Default Text', type: 'Action' },
                   position: { x: 160, y: 50 },
                   style: {
                     border: '1px solid #ff0a80',
@@ -190,7 +188,7 @@ export default class DragDrop extends React.Component {
                 const newEl = {
                   id: this.state.count.toString(),
                   type: 'default',
-                  data: { label: 'New Query', text: 'Default Text' },
+                  data: { label: 'New Query', text: 'Default Text', type: 'Query' },
                   position: { x: 260, y: 50 },
                   style: {
                     border: '1px solid #222222',
