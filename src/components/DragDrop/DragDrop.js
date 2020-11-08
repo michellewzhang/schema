@@ -6,7 +6,7 @@ import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import Flow from '../Flow/Flow';
 import Modal from '../Modal/Modal';
 import Tooltip from '@material-ui/core/Tooltip';
-import ReactFlow, { isNode, getOutgoers, getIncomers } from 'react-flow-renderer';
+import ReactFlow, { isNode, getIncomers } from 'react-flow-renderer';
 
 export default class DragDrop extends React.Component {
   constructor(props) {
@@ -93,7 +93,7 @@ export default class DragDrop extends React.Component {
 
     const connections = {};
     elements.forEach(obj => {
-      if (isNode(obj) && obj.data.type != "State") {
+      if (isNode(obj) && obj.data.type !== "State") {
         var incoming = getIncomers(obj, elements);
         incoming.forEach(node => connections[node.data.label] = obj.data.label);
     }});
