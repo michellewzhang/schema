@@ -6,7 +6,7 @@ import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import Flow from '../Flow/Flow';
 import Modal from '../Modal/Modal';
 import Tooltip from '@material-ui/core/Tooltip';
-import ReactFlow, { isNode, getIncomers } from 'react-flow-renderer';
+import { isNode, getIncomers } from 'react-flow-renderer';
 
 export default class DragDrop extends React.Component {
   constructor(props) {

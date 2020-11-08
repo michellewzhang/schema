@@ -9,13 +9,12 @@ export default class Messenger extends React.Component {
       messages: [
         {
           id: 0,
-          author: 'apple',
+          author: 'system',
           message: 'Hello! Welcome to dialog builder.',
-          timestamp: new Date().getTime(),
         }
       ],
-      id: 1,
-      author: 'apple',
+      id: 0,
+      author: 'system',
       value: '',
     };
     this.handleChange = this.handleChange.bind(this);
@@ -31,12 +30,11 @@ export default class Messenger extends React.Component {
       messages: [...prevState.messages,
       {
         id: this.state.id + 1,
-        author: this.state.author === 'apple' ? 'orange' : 'apple',
+        author: this.state.author === 'system' ? 'user' : 'system',
         message: this.state.value,
-        timestamp: new Date().getTime(),
       }],
       id: this.state.id + 1,
-      author: this.state.author === 'apple' ? 'orange' : 'apple',
+      author: this.state.author === 'system' ? 'user' : 'system',
     }),
     );
     this.setState({ value: '' });
@@ -45,6 +43,7 @@ export default class Messenger extends React.Component {
 
   render() {
     const schemaTitle = this.props.title;
+    console.log(this.state.messages);
 
     return (
       <div className="messenger">
