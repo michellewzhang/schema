@@ -14,6 +14,7 @@ export default class DragDrop extends React.Component {
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
+      userID: this.props.userID,
       count: 1,
       elementsList: [],
       open: false,
@@ -39,10 +40,12 @@ export default class DragDrop extends React.Component {
     newNode.data.label = valTitle;
     newNode.data.text = valText;
 
-    this.setState({ elementsList: this.state.elementsList.filter(function(obj) { 
-        return obj.id !== nodeId 
-    }).concat(newNode)});
-    
+    this.setState({
+      elementsList: this.state.elementsList.filter(function (obj) {
+        return obj.id !== nodeId
+      }).concat(newNode)
+    });
+
   }
 
   onListRemove = (arr) => {
@@ -88,23 +91,24 @@ export default class DragDrop extends React.Component {
     const states = {};
     elements.forEach(obj => {
       if (isNode(obj)) {
-      states[obj.data.label] = obj.data.text
-    }});
+        states[obj.data.label] = obj.data.text
+      }
+    });
 
     const connections = {};
     elements.forEach(obj => {
       if (isNode(obj) && obj.data.type !== "State") {
         var incoming = getIncomers(obj, elements);
         incoming.forEach(node => connections[node.data.label] = obj.data.label);
-    }});
+      }
+    });
 
     const data = {
-      task: schemaTitle, 
+      task: schemaTitle,
       replies: states,
-      graph: connections
+      graph: connections,
+      userID: this.state.userID
     }
-
-    console.log(data);
     //end data representation
 
     return (
@@ -116,7 +120,13 @@ export default class DragDrop extends React.Component {
               className="title-input"
               placeholder="Title Your Schema"
               value={schemaTitle} onChange={this.handleChange} />
-            <IconButton aria-label="save">
+            <IconButton aria-label="save" onClick={() => {
+              console.log(data);
+              var request = new XMLHttpRequest();
+              request.open('POST', 'http://shikib.sp.cs.cmu.edu:8899/', true);
+              request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+              request.send(JSON.stringify(data));
+            }}>
               <SaveAltIcon />
             </IconButton>
             <span className="howto">
@@ -204,8 +214,8 @@ export default class DragDrop extends React.Component {
           </Button>
           </span>
 
-          <Modal closeModal={this.closeModal} open={this.state.open} node={this.state.selected} 
-          onDataChange={this.onDataChange} />
+          <Modal closeModal={this.closeModal} open={this.state.open} node={this.state.selected}
+            onDataChange={this.onDataChange} />
 
         </div>
       </div>

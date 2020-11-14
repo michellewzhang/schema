@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -33,7 +33,7 @@ export default function Modal(props) {
             fullWidth={true}
             multiline={true}
             defaultValue={props.node.data.label}
-            onChange={(event) => {setTitle(event.target.value)}}
+            onChange={(event) => { setTitle(event.target.value) }}
             variant="outlined"
           />
           <h4 className="input-title">Text:</h4>
@@ -44,7 +44,7 @@ export default function Modal(props) {
             fullWidth={true}
             multiline={true}
             defaultValue={props.node.data.text}
-            onChange={(event) => {setText(event.target.value)}}
+            onChange={(event) => { setText(event.target.value) }}
             variant="outlined"
           />
         </DialogContent>

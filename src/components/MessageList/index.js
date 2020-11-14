@@ -4,10 +4,9 @@ import Message from '../Message';
 import moment from 'moment';
 import './MessageList.css';
 
-const MY_USER_ID = 'user';
-
 export default function MessageList(props) {
 
+  const MY_USER_ID = props.userID;
   const schemaTitle = props.title;
 
   const [messages, setMessages] = useState([]);
