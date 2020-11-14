@@ -86,7 +86,7 @@ export default class DragDrop extends React.Component {
   render() {
     const schemaTitle = this.props.title;
 
-    //data representatioon
+    //data representation
     const elements = [...this.state.elementsList];
     const states = {};
     elements.forEach(obj => {
@@ -96,10 +96,17 @@ export default class DragDrop extends React.Component {
     });
 
     const connections = {};
+    var startMessage = "";
+
     elements.forEach(obj => {
-      if (isNode(obj) && obj.data.type !== "State") {
+      if (isNode(obj)) {
         var incoming = getIncomers(obj, elements);
-        incoming.forEach(node => connections[node.data.label] = obj.data.label);
+        if (obj.data.type !== "State") {
+          incoming.forEach(node => connections[node.data.label] = obj.data.label);
+        }
+        if (incoming.length === 0) {
+          startMessage = obj.data.label;
+        }
       }
     });
 
@@ -107,6 +114,7 @@ export default class DragDrop extends React.Component {
       task: schemaTitle,
       replies: states,
       graph: connections,
+      start: startMessage,
       userID: this.state.userID
     }
     //end data representation

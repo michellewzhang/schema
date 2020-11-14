@@ -7,15 +7,10 @@ export default class Messenger extends React.Component {
     super(props);
     this.state = {
       messages: [
-        {
-          id: 0,
-          author: 'system',
-          message: 'Hello! Welcome to dialog builder.',
-        }
       ],
       id: 0,
       userID: this.props.userID,
-      author: 'system',
+      author: this.props.userID,
       value: '',
     };
     this.handleChange = this.handleChange.bind(this);
