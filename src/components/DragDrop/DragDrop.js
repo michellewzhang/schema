@@ -3,10 +3,11 @@ import styles from './DragDrop.css';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
+import Tooltip from '@material-ui/core/Tooltip';
 import Flow from '../Flow/Flow';
 import Modal from '../Modal/Modal';
-import Tooltip from '@material-ui/core/Tooltip';
-import { isNode, getIncomers } from 'react-flow-renderer';
+import Toast from '../Toast/Toast';
+import { isNode, getIncomers, getOutgoers } from 'react-flow-renderer';
 
 export default class DragDrop extends React.Component {
   constructor(props) {
@@ -17,7 +18,9 @@ export default class DragDrop extends React.Component {
       userID: this.props.userID,
       count: 1,
       elementsList: [],
-      open: false,
+      modalOpen: false,
+      errorList: new Set(),
+      toastActive: false,
       selected: {
         id: 'None',
         position: { x: 0, y: 0 },
@@ -32,6 +35,71 @@ export default class DragDrop extends React.Component {
 
   handleChange(e) {
     this.props.onChange(e.target.value);
+  }
+
+  handleSave = (e) => {
+    //data representation
+    const elements = [...this.state.elementsList];
+    const states = {};
+    elements.forEach(obj => {
+      if (isNode(obj)) {
+        states[obj.data.label] = obj.data.text
+      }
+    });
+
+    const connections = {};
+    var startMessage = "";
+
+    elements.forEach(obj => {
+      if (isNode(obj)) {
+        var incoming = getIncomers(obj, elements);
+        if (obj.data.type !== "State") {
+          incoming.forEach(node => connections[node.data.label] = obj.data.label);
+        }
+        if (incoming.length === 0) {
+          startMessage = obj.data.label;
+        }
+      }
+    });
+
+    const data = {
+      task: this.props.title,
+      replies: states,
+      graph: connections,
+      start: startMessage,
+      userID: this.state.userID
+    }
+    //end data representation
+
+    var errors = new Set();
+    elements.forEach(obj => {
+      if (isNode(obj)) {
+        var incoming = getIncomers(obj, elements);
+        var outgoing = getOutgoers(obj, elements);
+        if (incoming.length === 0 && outgoing.length === 0) {
+          errors.add("a node is disconnected");
+        }
+
+        var outLen = outgoing.length;
+        if (outLen > 1) {
+          const stateN = outgoing.filter(n => n.data.type === 'State');
+          if (stateN.length === outLen) {
+            errors.add("non-determinism")
+          }
+        }
+      }
+    });
+
+    console.log(errors);
+    console.log(data);
+    this.setState({ toastActive: true, errorList: errors })
+
+    if (errors.size === 0) {
+      var request = new XMLHttpRequest();
+      request.open('POST', 'http://shikib.sp.cs.cmu.edu:8899/', true);
+      request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+      request.send(JSON.stringify(data));
+    }
   }
 
   onDataChange = (valTitle, valText, node) => {
@@ -76,48 +144,19 @@ export default class DragDrop extends React.Component {
   }
 
   onNodeSelected = (node) => {
-    this.setState({ selected: node, open: true });
+    this.setState({ selected: node, modalOpen: true });
   }
 
   closeModal = () => {
-    this.setState({ open: false });
+    this.setState({ modalOpen: false });
+  }
+
+  closeToast = () => {
+    this.setState({ toastActive: false });
   }
 
   render() {
     const schemaTitle = this.props.title;
-
-    //data representation
-    const elements = [...this.state.elementsList];
-    const states = {};
-    elements.forEach(obj => {
-      if (isNode(obj)) {
-        states[obj.data.label] = obj.data.text
-      }
-    });
-
-    const connections = {};
-    var startMessage = "";
-
-    elements.forEach(obj => {
-      if (isNode(obj)) {
-        var incoming = getIncomers(obj, elements);
-        if (obj.data.type !== "State") {
-          incoming.forEach(node => connections[node.data.label] = obj.data.label);
-        }
-        if (incoming.length === 0) {
-          startMessage = obj.data.label;
-        }
-      }
-    });
-
-    const data = {
-      task: schemaTitle,
-      replies: states,
-      graph: connections,
-      start: startMessage,
-      userID: this.state.userID
-    }
-    //end data representation
 
     return (
       <div className="container">
@@ -128,13 +167,7 @@ export default class DragDrop extends React.Component {
               className="title-input"
               placeholder="Title Your Schema"
               value={schemaTitle} onChange={this.handleChange} />
-            <IconButton aria-label="save" onClick={() => {
-              console.log(data);
-              var request = new XMLHttpRequest();
-              request.open('POST', 'http://shikib.sp.cs.cmu.edu:8899/', true);
-              request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-              request.send(JSON.stringify(data));
-            }}>
+            <IconButton aria-label="save" onClick={this.handleSave}>
               <SaveAltIcon />
             </IconButton>
             <span className="howto">
@@ -222,8 +255,10 @@ export default class DragDrop extends React.Component {
           </Button>
           </span>
 
-          <Modal closeModal={this.closeModal} open={this.state.open} node={this.state.selected}
+          <Modal closeModal={this.closeModal} open={this.state.modalOpen} node={this.state.selected}
             onDataChange={this.onDataChange} />
+
+          <Toast closeToast={this.closeToast} open={this.state.toastActive} errors={this.state.errorList} />
 
         </div>
       </div>
