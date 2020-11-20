@@ -3,6 +3,8 @@ import Toolbar from '../Toolbar';
 import Message from '../Message';
 import moment from 'moment';
 import './MessageList.css';
+import IconButton from '@material-ui/core/IconButton';
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 export default function MessageList(props) {
 
@@ -18,6 +20,10 @@ export default function MessageList(props) {
   const getMessages = (list) => {
     var tempMessages = list;
     setMessages(tempMessages);
+  }
+
+  const handleRefresh = () => {
+    props.clearMessages();
   }
 
   const renderMessages = () => {
@@ -84,9 +90,12 @@ export default function MessageList(props) {
 
   return (
     <div className="message-list">
+
       <Toolbar
         title={schemaTitle}
+        leftItems={<IconButton aria-label="refresh" onClick={handleRefresh}><RefreshIcon /></IconButton>}
       />
+
 
       <div className="message-list-container">{renderMessages()}</div>
     </div>

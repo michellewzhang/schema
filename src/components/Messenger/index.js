@@ -6,8 +6,7 @@ export default class Messenger extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: [
-      ],
+      messages: [],
       id: 0,
       userID: this.props.userID,
       author: this.props.userID,
@@ -15,6 +14,17 @@ export default class Messenger extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (this.props.saveClicked) {
+      this.setState({ messages: [] });
+      this.props.clickDone();
+    }
+  }
+
+  clearMessages = () => {
+    this.setState({ messages: [] })
   }
 
   handleChange(event) {
@@ -62,7 +72,6 @@ export default class Messenger extends React.Component {
   render() {
     const schemaTitle = this.props.title;
 
-
     return (
       <div className="messenger">
         <div className="compose">
@@ -76,7 +85,8 @@ export default class Messenger extends React.Component {
         </div>
 
         <div className="message-list">
-          <MessageList messageList={this.state.messages} title={schemaTitle} userID={this.state.userID} />
+          <MessageList messageList={this.state.messages} title={schemaTitle} userID={this.state.userID}
+            clearMessages={this.clearMessages} />
         </div>
       </div>
     );

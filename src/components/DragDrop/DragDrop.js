@@ -38,6 +38,11 @@ export default class DragDrop extends React.Component {
   }
 
   handleSave = (e) => {
+    this.props.saveClicked();
+    this.saveData(e);
+  }
+
+  saveData = (e) => {
     //data representation
     const elements = [...this.state.elementsList];
     const states = {};
@@ -67,17 +72,25 @@ export default class DragDrop extends React.Component {
       replies: states,
       graph: connections,
       start: startMessage,
-      userID: this.state.userID
+      userID: this.state.userID,
     }
     //end data representation
 
     var errors = new Set();
+    var oneStart = 0;
     elements.forEach(obj => {
       if (isNode(obj)) {
         var incoming = getIncomers(obj, elements);
         var outgoing = getOutgoers(obj, elements);
         if (incoming.length === 0 && outgoing.length === 0) {
           errors.add("a node is disconnected");
+        }
+
+        if (incoming.length === 0) {
+          oneStart += 1;
+          if (oneStart > 1) {
+            errors.add("multiple start nodes");
+          }
         }
 
         var outLen = outgoing.length;
@@ -89,6 +102,7 @@ export default class DragDrop extends React.Component {
         }
       }
     });
+    oneStart = 0;
 
     console.log(errors);
     console.log(data);

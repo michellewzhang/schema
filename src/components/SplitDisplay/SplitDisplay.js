@@ -11,9 +11,10 @@ export default class SplitDisplay extends React.Component {
 
     super(props);
     this.onChange = this.onChange.bind(this);
-    this.state = { 
+    this.state = {
       title: 'Title Your Schema',
-      userID: MY_USER_ID
+      userID: MY_USER_ID,
+      saveClicked: false
     };
   }
 
@@ -21,12 +22,21 @@ export default class SplitDisplay extends React.Component {
     this.setState({ title: t });
   }
 
+  saveClicked = () => {
+    this.setState({ saveClicked: true })
+  }
+
+  clickDone = () => {
+    this.setState({ saveClicked: false })
+  }
+
   render() {
     return (
       <div className="split">
         <SplitPane allowResize={true} split="vertical">
-          <div className="dnd"><DragDrop onChange={this.onChange} title={this.state.title} userID={this.state.userID} /></div>
-          <div><Messenger title={this.state.title} userID={this.state.userID}/></div>
+          <div className="dnd"><DragDrop onChange={this.onChange} title={this.state.title} userID={this.state.userID}
+            saveClicked={this.saveClicked} /></div>
+          <div><Messenger title={this.state.title} userID={this.state.userID} saveClicked={this.state.saveClicked} clickDone={this.clickDone} /></div>
         </SplitPane>
       </div>
     );
