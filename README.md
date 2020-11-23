@@ -27,7 +27,7 @@ Basic functions:
 
 | Component Name  | Function |
 | ------------- | ------------- |
-| DragDrop  |<ul><li>Contains buttons which allow users to create State, Action, & Query components</li><li>Controls ability to title the schema</li><li>Contains save button</li></ul>|
+| DragDrop  |<ul><li>Contains buttons which allow users to create State, Action, & Query components</li><li>Controls ability to title the schema</li><li>Contains save button & error handling</li></ul>|
 | Flow  | <ul><li>Contains workspace for building the dialog schema</li><li>Utilizes the [React Flow](https://reactflow.dev/) library</li></ul> |
 | Message  | Controls the message properties |
 | MessageList  | Controls list of messages displayed on the frontend |
