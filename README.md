@@ -1,4 +1,4 @@
-# Schema Builder User Interface
+# Schema Builder User Interface  :speech_balloon:
 - Created by **Michelle Zhang**, Fall 2020
 - Advised by Shikib Mehri and Maxine Eskenazi
 
