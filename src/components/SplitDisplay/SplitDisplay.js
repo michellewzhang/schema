@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Messenger from '../Messenger';
+import Messenger from '../Messenger/Messenger';
 import SplitPane from 'react-split-pane';
 import DragDrop from '../DragDrop/DragDrop';
 import './SplitDisplay.css';

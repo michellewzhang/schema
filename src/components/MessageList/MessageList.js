@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Toolbar from '../Toolbar';
-import Message from '../Message';
+import Toolbar from '../Toolbar/Toolbar';
+import Message from '../Message/Message';
 import moment from 'moment';
 import './MessageList.css';
 import IconButton from '@material-ui/core/IconButton';

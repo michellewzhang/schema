@@ -1,4 +1,4 @@
-import MessageList from '../MessageList';
+import MessageList from '../MessageList/MessageList';
 import './Messenger.css';
 import React from 'react';
 
