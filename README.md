@@ -3,6 +3,8 @@
 - Advised by Shikib Mehri and Maxine Eskenazi 
 - Project for [DialRC](http://dialrc.org/), Language Technologies Institute, Carnegie Mellon University
 
+![Thumbnail](assets/thumbnail.png?raw=true "Title")
+
 ### Description 
 
 Schema Builder is an application that allows users to build dialog schema, 
