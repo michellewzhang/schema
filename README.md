@@ -1,7 +1,9 @@
 # Schema Builder User Interface  :speech_balloon:
 - Created by **Michelle Zhang**, Fall 2020
-- Advised by Shikib Mehri and Maxine Eskenazi 
+- Advised by Shikib Mehri and Dr. Maxine Eskenazi 
 - Project for [DialRC](http://dialrc.org/), Language Technologies Institute, Carnegie Mellon University
+
+![Thumbnail](assets/thumbnail.png?raw=true "Title")
 
 ### Description 
 
