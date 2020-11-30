@@ -1,3 +1,5 @@
+/* Copyright Carnegie Mellon University 2020 Michelle Zhang. */
+
 import React from 'react';
 import styles from './DragDrop.css';
 import Button from '@material-ui/core/Button';

@@ -1,3 +1,5 @@
+/* Copyright Carnegie Mellon University 2020 Michelle Zhang. */
+
 import React, { useEffect, useState } from 'react';
 import Toolbar from '../Toolbar/Toolbar';
 import Message from '../Message/Message';

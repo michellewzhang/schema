@@ -1,3 +1,5 @@
+/* Copyright Carnegie Mellon University 2020 Michelle Zhang. */
+
 import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';

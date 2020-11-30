@@ -1,4 +1,6 @@
-  .split {
+  /* Copyright Carnegie Mellon University 2020 Michelle Zhang. */
+  
+  split {
     cursor: default;
     height:100vh;
   }

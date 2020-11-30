@@ -1,3 +1,5 @@
+# Copyright Carnegie Mellon University 2020 Michelle Zhang. 
+
 import tornado.ioloop
 import tornado.web
 import json

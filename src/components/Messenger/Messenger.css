@@ -1,3 +1,5 @@
+/* Copyright Carnegie Mellon University 2020 Michelle Zhang. */
+
 .messenger {
   display: grid;
   grid-template-rows: 6px auto 60px;

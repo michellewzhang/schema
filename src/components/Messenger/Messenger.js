@@ -1,3 +1,5 @@
+/* Copyright Carnegie Mellon University 2020 Michelle Zhang. */
+
 import MessageList from '../MessageList/MessageList';
 import './Messenger.css';
 import React from 'react';

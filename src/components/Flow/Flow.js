@@ -1,3 +1,5 @@
+/* Copyright Carnegie Mellon University 2020 Michelle Zhang. */
+
 import React, { useState, useEffect } from 'react';
 import ReactFlow, {
   removeElements,

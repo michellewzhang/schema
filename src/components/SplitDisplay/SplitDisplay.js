@@ -1,3 +1,5 @@
+/* Copyright Carnegie Mellon University 2020 Michelle Zhang. */
+
 import * as React from 'react';
 import Messenger from '../Messenger/Messenger';
 import SplitPane from 'react-split-pane';
