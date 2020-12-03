@@ -4,6 +4,7 @@ import tornado.ioloop
 import tornado.web
 import json
 import random
+import requests
 
 dialogs = {}
 startMessages = {}
@@ -11,12 +12,15 @@ startMessages = {}
 # generates the next response
 def reply(history, userid):
     thisdialog = dialogs[userid]
+    formattedHistory = ''.join([["[User] ", "[Agent] "][int(i % 2)] + e["message"] + " [SEP] " for i,e in enumerate(history)] ).strip()
     replies = thisdialog["replies"]
     if len(history) == 0:
         start = startMessages[userid]
         return replies[start]
 
-    return random.choice(list(replies.values()))
+    rres = requests.post('http://shikib.sp.cs.cmu.edu:8886/', json={'schema': thisdialog, 'dialog': formattedHistory})
+    print(thisdialog, formattedHistory, rres.text)
+    return rres.text
     
 class SchemaHandler(tornado.web.RequestHandler):
   def set_default_headers(self):
