@@ -206,76 +206,81 @@ export default class DragDrop extends React.Component {
         <div>
           <h3>Add a Component</h3>
           <span className="add-button">
-            <Button variant="outlined" color="primary"
-              onClick={() => {
-                const newEl = {
-                  id: this.state.count.toString(),
-                  type: 'default',
-                  data: { label: 'New State', text: 'Default Text', type: 'State' },
-                  position: { x: 60, y: 50 },
-                  style: {
-                    border: '1px solid #454bff',
-                  }
-                };
+            <Tooltip title="User decisions (Y/N)" arrow>
+              <Button variant="outlined" color="primary"
+                onClick={() => {
+                  const newEl = {
+                    id: this.state.count.toString(),
+                    type: 'default',
+                    data: { label: 'New State', text: 'Default Text', type: 'State' },
+                    position: { x: 60, y: 50 },
+                    style: {
+                      border: '1px solid #454bff',
+                    }
+                  };
 
-                this.setState(prevState => ({
-                  elementsList: [...prevState.elementsList, newEl],
-                  count: prevState.count + 1
-                }));
-              }}>
-              State
-          </Button>
+                  this.setState(prevState => ({
+                    elementsList: [...prevState.elementsList, newEl],
+                    count: prevState.count + 1
+                  }));
+                }}>
+                State
+              </Button>
+            </Tooltip>
           </span>
 
           <span className="add-button">
-            <Button variant="outlined" color="secondary"
-              onClick={() => {
-                const newEl = {
-                  id: this.state.count.toString(),
-                  type: 'default',
-                  data: { label: 'New Action', text: 'Default Text', type: 'Action' },
-                  position: { x: 160, y: 50 },
-                  style: {
-                    border: '1px solid #ff0a80',
-                  }
-                };
+            <Tooltip title="System actions" arrow>
+              <Button variant="outlined" color="secondary"
+                onClick={() => {
+                  const newEl = {
+                    id: this.state.count.toString(),
+                    type: 'default',
+                    data: { label: 'New Action', text: 'Default Text', type: 'Action' },
+                    position: { x: 160, y: 50 },
+                    style: {
+                      border: '1px solid #ff0a80',
+                    }
+                  };
 
-                this.setState(prevState => ({
-                  elementsList: [...prevState.elementsList, newEl],
-                  count: prevState.count + 1
-                }));
-              }}>
-              Action
-          </Button>
+                  this.setState(prevState => ({
+                    elementsList: [...prevState.elementsList, newEl],
+                    count: prevState.count + 1
+                  }));
+                }}>
+                Action
+              </Button>
+            </Tooltip>
           </span>
 
           <span className="add-button">
-            <Button variant="outlined" color="default"
-              onClick={() => {
-                const newEl = {
-                  id: this.state.count.toString(),
-                  type: 'default',
-                  data: { label: 'New Query', text: 'Default Text', type: 'Query' },
-                  position: { x: 260, y: 50 },
-                  style: {
-                    border: '1px solid #222222',
-                  }
-                };
+            <Tooltip title="Queries to database" arrow>
+              <Button variant="outlined" color="default"
+                onClick={() => {
+                  const newEl = {
+                    id: this.state.count.toString(),
+                    type: 'default',
+                    data: { label: 'New Query', text: 'Default Text', type: 'Query' },
+                    position: { x: 260, y: 50 },
+                    style: {
+                      border: '1px solid #222222',
+                    }
+                  };
 
-                this.setState(prevState => ({
-                  elementsList: [...prevState.elementsList, newEl],
-                  count: prevState.count + 1
-                }));
-              }}>
-              Query
-          </Button>
+                  this.setState(prevState => ({
+                    elementsList: [...prevState.elementsList, newEl],
+                    count: prevState.count + 1
+                  }));
+                }}>
+                Query
+              </Button>
+            </Tooltip>
           </span>
 
           <Modal closeModal={this.closeModal} open={this.state.modalOpen} node={this.state.selected}
             onDataChange={this.onDataChange} />
 
           <Toast closeToast={this.closeToast} open={this.state.toastActive} errors={this.state.errorList} />
-
         </div>
       </div>
     )

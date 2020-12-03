@@ -19,7 +19,6 @@ def reply(history, userid):
         return replies[start]
 
     rres = requests.post('http://shikib.sp.cs.cmu.edu:8886/', json={'schema': thisdialog, 'dialog': formattedHistory})
-    print(thisdialog, formattedHistory, rres.text)
     return rres.text
     
 class SchemaHandler(tornado.web.RequestHandler):
