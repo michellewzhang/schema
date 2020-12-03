@@ -25,7 +25,7 @@ Basic functions:
 - The backend API uses the Python Tornado framework.
 - Some UI components for the chatbox (namely `Message, MessageList, Messenger, Toolbar`) are based on [React Messenger](https://github.com/sejr/react-messenger).
 
-## Component Breakdown :star2:
+## Component Breakdown
 
 | Component Name  | Function |
 | ------------- | ------------- |
