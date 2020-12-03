@@ -9,7 +9,7 @@
 
 Schema Builder is an application that allows users to build dialog schema, 
 which are then passed into schema-guided models trained on the [STAR dataset](https://arxiv.org/pdf/2010.11853.pdf). 
-The schema will be used during modeling to facilitate generalizability and zero-shot transfer learning.
+The schema are used in conjunction with pre-existing model knowledge to facilitate generalizability and zero-shot transfer learning.
  
 ### Usage 
 
