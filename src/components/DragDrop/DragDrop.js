@@ -205,7 +205,7 @@ export default class DragDrop extends React.Component {
         <div>
           <h3>Add a Component</h3>
           <span className="add-button">
-            <Tooltip title="User decisions (Y/N)" arrow>
+            <Tooltip title="User paths" arrow>
               <Button variant="outlined" color="primary"
                 onClick={() => {
                   const newEl = {
@@ -229,7 +229,7 @@ export default class DragDrop extends React.Component {
           </span>
 
           <span className="add-button">
-            <Tooltip title="System actions" arrow>
+            <Tooltip title="System prompts and actions" arrow>
               <Button variant="outlined" color="secondary"
                 onClick={() => {
                   const newEl = {
