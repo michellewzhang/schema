@@ -97,7 +97,7 @@ export default class DragDrop extends React.Component {
 
         var outLen = outgoing.length;
         if (outLen > 1) {
-          const stateN = outgoing.filter(n => n.data.type === 'State');
+          const stateN = outgoing.filter(n => n.data.type === 'Action');
           if (stateN.length === outLen) {
             errors.add("non-determinism")
           }
