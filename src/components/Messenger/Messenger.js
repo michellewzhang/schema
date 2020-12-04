@@ -34,22 +34,16 @@ export default class Messenger extends React.Component {
   }
 
   handleSubmit(event) {
-    this.setState(prevState => ({
-      messages: [...prevState.messages,
-      {
-        id: this.state.id + 1,
-        author: this.state.userID,
-        message: this.state.value,
-      }],
-      id: this.state.id + 1,
-      author: this.state.userID,
-    }),
-    );
-    this.setState({ value: '' });
     event.preventDefault();
     var that = this;
     var request = new XMLHttpRequest();
-    var data = { messages: this.state.messages, userID: this.state.userID };
+    var data = { 
+      messages: [...this.state.messages, 
+        { id: this.state.id + 1, 
+          author: this.state.userID, 
+          message: this.state.value  } ],
+      userID: this.state.userID 
+    };
     console.log(data);
     request.open('POST', 'http://shikib.sp.cs.cmu.edu:8899/reply', true);
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
@@ -59,10 +53,15 @@ export default class Messenger extends React.Component {
         messages: [...prevState.messages,
         {
           id: that.state.id + 1,
+          author: that.state.userID,
+          message: that.state.value,
+        },
+        {
+          id: that.state.id + 1,
           author: 'system',
           message: request.responseText,
         }],
-        id: that.state.id + 1,
+        id: that.state.id + 2,
         author: 'system',
       }),
       );
