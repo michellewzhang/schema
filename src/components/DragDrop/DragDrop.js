@@ -120,16 +120,15 @@ export default class DragDrop extends React.Component {
 
   onDataChange = (valTitle, valText, node) => {
     var newNode = JSON.parse(JSON.stringify(node));
-    var nodeId = node.id
+    var nodeId = node.id;
     newNode.data.label = valTitle;
     newNode.data.text = valText;
-
+  
     this.setState({
       elementsList: this.state.elementsList.filter(function (obj) {
         return obj.id !== nodeId
       }).concat(newNode)
     });
-
   }
 
   onListRemove = (arr) => {
