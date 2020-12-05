@@ -76,6 +76,7 @@ export default class DragDrop extends React.Component {
       start: startMessage,
       userID: this.state.userID,
     }
+    console.log("startMessage:" + startMessage);
     //end data representation
 
     var errors = new Set();
