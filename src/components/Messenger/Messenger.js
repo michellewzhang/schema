@@ -45,7 +45,7 @@ export default class Messenger extends React.Component {
       userID: this.state.userID 
     };
     console.log(data);
-    console.log(messages);
+    console.log(this.state.messages);
     request.open('POST', 'http://shikib.sp.cs.cmu.edu:8899/reply', true);
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     request.onload = function () {
