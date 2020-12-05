@@ -39,6 +39,8 @@ Basic functions:
 | Toast | Notifications that appear when save button is clicked |
 | Toolbar | Controls the properties for the toolbar above the message display area |
 
+## Example Usage
+![Example](assets/ExampleUsage.png?raw=true "Title")
 
 ### Inquiries 
 Please contact mwzhang@andrew.cmu.edu.
