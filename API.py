@@ -14,7 +14,7 @@ def reply(history, userid):
     thisdialog = dialogs[userid]
     formattedHistory = ''.join([["[User] ", "[Agent] "][int(i % 2)] + e["message"] + " [SEP] " for i,e in enumerate(history)] ).strip()
     replies = thisdialog["replies"]
-    if len(history) == 0:
+    if len(history) == 1:
         start = startMessages[userid]
         return replies[start]
 
