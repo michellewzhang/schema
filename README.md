@@ -41,6 +41,7 @@ Basic functions:
 
 ## Example Usage
 ![Example](assets/ExampleUsage.png?raw=true "Title")
+![Example 2](assets/ExampleUsage2.png?raw=true "Title")
 
 ### Inquiries 
 Please contact mwzhang@andrew.cmu.edu.
